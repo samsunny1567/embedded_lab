@@ -21,6 +21,6 @@ extern PIN_OBJ RXD;
 extern PIN_OBJ SDA;
 extern PIN_OBJ SCL;
 
-
+extern TWI_CONFIG TMF_SENSOR;
 
 #endif /* EXTERN_H_ */
