@@ -30,15 +30,15 @@
     <EraseKey />
     <AsfFrameworkConfig>
       <framework-data xmlns="">
-  <options />
-  <configurations />
-  <files />
-  <documentation help="" />
-  <offline-documentation help="" />
-  <dependencies>
-    <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.52.0" />
-  </dependencies>
-</framework-data>
+        <options />
+        <configurations />
+        <files />
+        <documentation help="" />
+        <offline-documentation help="" />
+        <dependencies>
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.52.0" />
+        </dependencies>
+      </framework-data>
     </AsfFrameworkConfig>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -69,8 +69,18 @@
   <avrgcc.linker.libraries.Libraries>
     <ListValues>
       <Value>libm</Value>
+      <Value>libgpioDriver.a</Value>
+      <Value>libsystemDriver.a</Value>
+      <Value>libtwiDriver.a</Value>
     </ListValues>
   </avrgcc.linker.libraries.Libraries>
+  <avrgcc.linker.libraries.LibrarySearchPaths>
+    <ListValues>
+      <Value>D:\embedded_lab\LAB\i2c_test\library\gpioDriver\Debug</Value>
+      <Value>D:\embedded_lab\LAB\i2c_test\library\systemDriver\Debug</Value>
+      <Value>D:\embedded_lab\LAB\i2c_test\library\twiDriver\Debug</Value>
+    </ListValues>
+  </avrgcc.linker.libraries.LibrarySearchPaths>
   <avrgcc.assembler.general.IncludePaths>
     <ListValues>
       <Value>%24(PackRepoDir)\Atmel\ATmega_DFP\2.1.506\include\</Value>
@@ -108,8 +118,18 @@
   <avrgcc.linker.libraries.Libraries>
     <ListValues>
       <Value>libm</Value>
+      <Value>libgpioDriver.a</Value>
+      <Value>libsystemDriver.a</Value>
+      <Value>libtwiDriver.a</Value>
     </ListValues>
   </avrgcc.linker.libraries.Libraries>
+  <avrgcc.linker.libraries.LibrarySearchPaths>
+    <ListValues>
+      <Value>D:\embedded_lab\LAB\i2c_test\library\gpioDriver\Debug</Value>
+      <Value>D:\embedded_lab\LAB\i2c_test\library\systemDriver\Debug</Value>
+      <Value>D:\embedded_lab\LAB\i2c_test\library\twiDriver\Debug</Value>
+    </ListValues>
+  </avrgcc.linker.libraries.LibrarySearchPaths>
   <avrgcc.assembler.general.IncludePaths>
     <ListValues>
       <Value>%24(PackRepoDir)\Atmel\ATmega_DFP\2.1.506\include\</Value>
@@ -120,9 +140,41 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="extern.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="globals.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="headers.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="macros.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="peripherals.h">
+      <SubType>compile</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\library\gpioDriver\gpioDriver.cproj">
+      <Name>gpioDriver</Name>
+      <Project>{27f783be-db80-40ba-9b79-25f153356ec9}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\library\systemDriver\systemDriver.cproj">
+      <Name>systemDriver</Name>
+      <Project>{3e63d4cd-b91a-455a-8d33-6232e77ac310}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\library\twiDriver\twiDriver.cproj">
+      <Name>twiDriver</Name>
+      <Project>{ff7cd252-f81b-408e-9ab5-f6886d95930b}</Project>
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>
